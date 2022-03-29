@@ -1,0 +1,11 @@
+{{ if .Values.ca }}
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: plugins-enabled
+data:
+  login-ssl.php: |
+    <?php
+    require_once('plugins/login-ssl.php');
+    return new AdminerLoginSsl(array("ca" => "/secrets/ca.pem"));
+{{ end }}

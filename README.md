@@ -40,6 +40,10 @@ Install the Adminer helm chart with a release name `my-release`:
 helm install --name my-release cetic/adminer
 ```
 
+### Enable TLS(SSL) support
+
+See [values.yaml](./values.yaml) file for required values.
+
 ## Uninstallation
 
 To uninstall/delete the `my-release` deployment:
@@ -91,6 +95,7 @@ The following table lists the configurable parameters of the Adminer chart and t
 | `readinessProbe`                  | Readiness probe settings                                                | `nil`                       |
 | `volumeMounts`                    | Add volumeMount to the adminer container                                | `nil`                       |
 | `volumes`                         | Add volumes to the pod                                                  | `nil`                       |
+| `ca`                              | CA certificate                                                   | `nil`                       |
 
 ## Credits
 
