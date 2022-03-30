@@ -44,13 +44,11 @@ ingress:
   hosts: []
   path: /
 
-# kubectl create secret generic ca --from-file=ca.pem
-# cat > login-ssl.php << EOF
-# <?php
-# require_once('plugins/login-ssl.php');
-# return new AdminerLoginSsl(array("ca" => "/secrets/ca.pem"));
-# EOF
-# kubectl create configmap plugins-enabled --from-file=login-ssl.php
+# Add TLS support
+# ca: |
+#   -----BEGIN CERTIFICATE-----
+#   MIIDrzCCApegAwIBAgIQCDvgVpBCRrGhdWrJWZHHSjANBgkqhkiG9w0BAQUFADBh
+#   ...
 # volumeMounts:
 #   - name: ca
 #     mountPath: "/secrets/"
@@ -58,7 +56,6 @@ ingress:
 #   - name: plugins-enabled
 #     mountPath: "/var/www/html/plugins-enabled/"
 #     readOnly: true
-
 # volumes:
 #   - name: ca
 #     secret:

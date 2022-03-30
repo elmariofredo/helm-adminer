@@ -18,13 +18,15 @@ spec:
       labels:
         app.kubernetes.io/name: {{ include "adminer.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
+      annotations:
+        checksum/config: {{ .Values.ca | sha256sum }}
     spec:
       {{- if .Values.image.pullSecrets }}
       imagePullSecrets:
         {{- range .Values.image.pullSecrets }}
         - name: {{ . }}
         {{- end }}
-      {{- end }}      
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
